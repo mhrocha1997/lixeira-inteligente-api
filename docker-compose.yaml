@@ -4,7 +4,19 @@ services:
         build: .
         image: lixeira-inteligente-api
         container_name: lixeira-inteligente-api
+        depends_on:
+            - db
         volumes:
             - ./src/:/usr/src/
         ports:
             - 453:8000
+    db:
+        image: postgres
+        container_name: postgres
+        environment:
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: lixeirainteligente
+        volumes:
+            - ./pgdata:/var/lib/postgresql/data
+        ports:
+            - 5432:5432
