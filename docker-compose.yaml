@@ -1,0 +1,10 @@
+version: '3'
+services:
+    api:
+        build: .
+        image: lixeira-inteligente-api
+        container_name: lixeira-inteligente-api
+        volumes:
+            - ./src/:/usr/src/
+        ports:
+            - 453:8000
