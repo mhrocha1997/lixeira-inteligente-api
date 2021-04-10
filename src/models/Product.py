@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 
 from database import Base
 
+from .Discard import discard_table
 class Product(Base):
     __tablename__= "products"
 
@@ -11,6 +12,6 @@ class Product(Base):
     material = Column(String)
     weight = Column(DECIMAL(4,4), nullable=False)
     img_base64 = Column(Text(), nullable=True)
-    user_id = Column(Integer, ForeignKey("users.id"))
+    points = Column(Integer, nullable=True)
 
-    user = relationship("User", back_populates="products")
+    owners = relationship("User",secondary=discard_table, back_populates="products")
