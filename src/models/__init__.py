@@ -1,2 +1,2 @@
-from . import User
-from . import Product
+from .User import User
+from .Product import Product

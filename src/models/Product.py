@@ -10,7 +10,7 @@ class Product(Base):
     name = Column(String, index=True)
     material = Column(String)
     weight = Column(DECIMAL(4,4), nullable=False)
-    img_base64 = Column(Text(100000), nullable=True)
+    img_base64 = Column(Text(), nullable=True)
     owner_id = Column(Integer, ForeignKey("users.id"))
 
     owner = relationship("User", back_populates="products")
