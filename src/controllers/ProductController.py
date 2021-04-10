@@ -1,8 +1,8 @@
 from fastapi import Depends, APIRouter
 from sqlalchemy.orm import Session
 
-from models import User
-from schemas import UserSchema
+from models import Product
+from schemas import ProductSchema
 
 from database import engine, Base, SessionLocal
 
@@ -17,16 +17,15 @@ def get_db():
 
 
 @router.post("/create/")
-def create_user(request: UserSchema, db: Session = Depends(get_db)):
+def create_product(request: ProductSchema, db: Session = Depends(get_db)):
     """
         Cadastro do usuário
     """
     try:
-        new_user = User(name=request.name,email=request.email,password=request.password,)
-        db.add(new_user)
+        new_product = Product(name=request.name,email=request.email,password=request.password,)
+        db.add(new_product)
         db.commit()
-        db.refresh(new_user)
-        return new_user.id
+        db.refresh(new_product)
+        return new_product.id
     except Exception as e:
         print(e)
-

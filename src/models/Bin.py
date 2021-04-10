@@ -10,3 +10,6 @@ class Bin(Base):
     capacity = Column(INTEGER(unsigned=True), nullable=False)
     status = Column(INTEGER(unsigned=True), nullable=False)
     last_updated = Column(DateTime, nullable=False)
+    hub_id = Column(Integer, ForeignKey("hubs.id"))
+
+    owner = relationship("Hub", back_populates="bins")

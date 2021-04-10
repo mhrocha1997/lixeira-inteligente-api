@@ -1,8 +1,11 @@
 from fastapi import FastAPI, Depends
+from fastapi.middleware.cors import CORSMiddleware
+
 from sqlalchemy.orm import Session
 
 from models import User
 from schemas import UserSchema
+from controllers import UserRouter, ProductRouter
 
 from database import engine, Base, SessionLocal
 
@@ -10,29 +13,31 @@ Base.metadata.create_all(engine)
 
 app = FastAPI()
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins={"*"},
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.get("/")
+@app.get("/", tags=['Test Connection'])
 def test():
     return {"message": "OK"}
 
+app.include_router(
+    UserRouter, 
+    prefix="/user", 
+    tags=['User']
+)
 
-@app.post("/create/user")
-def create_user(request: UserSchema, db: Session = Depends(get_db)):
-    """
-        Cadastro do usuário
-    """
-    try:
-        new_user = User(name=request.name,email=request.email,password=request.password,)
-        db.add(new_user)
-        db.commit()
-        db.refresh(new_user)
-        return new_user.id
-    except Exception as e:
-        print(e)
+app.include_router(
+    ProductRouter, 
+    prefix="/product", 
+    tags=["Product"]
+)
+
+
+
+
 

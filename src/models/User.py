@@ -11,6 +11,5 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     password = Column(String)
 
-
-    products = relationship("Product", back_populates="owner")
+    products = relationship("Product", back_populates="user")
     
