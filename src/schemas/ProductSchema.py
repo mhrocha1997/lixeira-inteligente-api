@@ -1,6 +1,8 @@
 from pydantic import BaseModel
 
 class ProductSchema(BaseModel):
-    email: str
-    password: str
+    bar_code: int
     name: str
+    material: str
+    weight: float
+    points: int

@@ -4,6 +4,8 @@ greenlet==1.0.0
 h11==0.12.0
 psycopg2-binary==2.8.6
 pydantic==1.8.1
+python-multipart==0.0.5
+six==1.15.0
 SQLAlchemy==1.4.7
 starlette==0.13.6
 typing-extensions==3.7.4.3

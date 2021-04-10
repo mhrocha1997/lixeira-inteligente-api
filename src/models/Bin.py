@@ -13,4 +13,4 @@ class Bin(Base):
     last_updated = Column(DateTime, nullable=False)
     hub_id = Column(Integer, ForeignKey("hubs.id"))
 
-    owner = relationship("Hub", back_populates="bins")
+    hub = relationship("Hub", back_populates="bins")

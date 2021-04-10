@@ -3,7 +3,6 @@ from sqlalchemy.orm import relationship
 
 from database import Base
 from .Discard import discard_table
-
 class User(Base):
     __tablename__ = "users"
 
@@ -12,5 +11,5 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     password = Column(String)
 
-    products = relationship("Product", secondary=discard_table, back_populates="user")
+    products = relationship("Product", secondary=discard_table, back_populates="owners")
     

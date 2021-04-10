@@ -8,6 +8,7 @@ class Product(Base):
     __tablename__= "products"
 
     id = Column(Integer, primary_key=True, index=True)
+    bar_code = Column(Integer) 
     name = Column(String, index=True)
     material = Column(String)
     weight = Column(DECIMAL(4,4), nullable=False)

@@ -36,8 +36,3 @@ app.include_router(
     prefix="/product", 
     tags=["Product"]
 )
-
-
-
-
-

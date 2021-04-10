@@ -1,2 +1,2 @@
-from .UserSchema import UserSchema
+from . import UserSchema
 from .ProductSchema import ProductSchema
